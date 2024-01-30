@@ -1,0 +1,9 @@
+.small-text{
+    font-size: 8px;
+}
+table{
+    width: 600px!important;
+}
+@media only screen and (max-width: 600px){
+
+}

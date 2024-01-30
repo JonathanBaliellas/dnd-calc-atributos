@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D 5e - Calculadora de Pontos</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="w3-center">
+        <h1>Calculadora de Pontos para D&D 5ª edição</h1>
+        <section id="sec-race" class="w3-section">
+            <div id="div-race">
+                <label for="sel-race">Selecione a raça: </label>
+                <select name="sel-race" id="sel-race" onchange="selectRace()">
+                    <option value="-1">Selecione</option>
+                </select>
+
+            </div>
+
+            <div id="div-subrace" style="visibility: hidden;">
+                <label for="sel-subrace">Selecione a sub-raça</label>
+                <select name="sel-subrace" id="sel-subrace" onchange="selectSubrace()">
+                    
+                </select>
+
+            </div>
+
+            <div id="div-alt" style="visibility: hidden;">
+                <label for="sel-att-1">Atributo 1</label>
+                <select class="w3-margin" name="sel-att-1" id="sel-att-1" onchange="selectAttributeBonus(1,value)">
+                    <option value="-1">Selecione</option>
+                    <option value="0">Força</option>
+                    <option value="1">Destreza</option>
+                    <option value="2">Constituição</option>
+                    <option value="3">Inteligência</option>
+                    <option value="4">Sabedoria</option>
+                    <option value="5">Carisma</option>
+                </select>
+
+                <label for="sel-att-2">Atributo 2</label>
+                <select class="w3-margin" name="sel-att-2" id="sel-att-2" onchange="selectAttributeBonus(0,value)">
+                    <option value="-1">Selecione</option>
+                    <option value="0">Força</option>
+                    <option value="1">Destreza</option>
+                    <option value="2">Constituição</option>
+                    <option value="3">Inteligência</option>
+                    <option value="4">Sabedoria</option>
+                    <option value="5">Carisma</option>
+                </select>
+            </div>
+        </section>
+        <section id="sec-point-buy" class="w3-section w3-centered">
+            <table class="w3-table-all">
+                <thead>
+                    <tr class="w3-indigo">
+                        <th>Atributo</th>
+                        <th>Valor</th>
+                        <th>Bônus Racial</th>
+                        <th>Valor Total</th>
+                        <th>Modificador</th>
+                        <th>Custo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Força</td>
+                        <td><input type="number" id="inp-str" min="8" max="15" value="8" onchange="updateAttribute()"></td>
+                        <td name="td-racial">0</td>
+                        <td name="td-total">8</td>
+                        <td name="td-mod">-1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Destreza</td>
+                        <td><input type="number" id="inp-dex" min="8" max="15" value="8" onchange="updateAttribute()"></td>
+                        <td name="td-racial">0</td>
+                        <td name="td-total">8</td>
+                        <td name="td-mod">-1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Constituição</td>
+                        <td><input type="number" id="inp-con" min="8" max="15" value="8" onchange="updateAttribute()"></td>
+                        <td name="td-racial">0</td>
+                        <td name="td-total">8</td>
+                        <td name="td-mod">-1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Inteligência</td>
+                        <td><input type="number" id="inp-int" min="8" max="15" value="8" onchange="updateAttribute()"></td>
+                        <td name="td-racial">0</td>
+                        <td name="td-total">8</td>
+                        <td name="td-mod">-1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Sabedoria</td>
+                        <td><input type="number" id="inp-wis" min="8" max="15" value="8" onchange="updateAttribute()"></td>
+                        <td name="td-racial">0</td>
+                        <td name="td-total">8</td>
+                        <td name="td-mod">-1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Carisma</td>
+                        <td><input type="number" id="inp-car" min="8" max="15" value="8" onchange="updateAttribute()"></td>
+                        <td name="td-racial">0</td>
+                        <td name="td-total">8</td>
+                        <td name="td-mod">-1</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="w3-section">
+            <button class="w3-button w3-indigo" onclick="reset()">Reiniciar</button>
+            <div>Pontos Restantes: <span id="spn-points-left">27</span>/27</div>
+
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
