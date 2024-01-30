@@ -190,7 +190,6 @@ function updateRacialBonus(){
         for(let i = 0; i < 6; i++){
             document.getElementsByName('td-racial')[i].innerHTML = 0
         }
-        console.log('parou')
         return
     } 
     
