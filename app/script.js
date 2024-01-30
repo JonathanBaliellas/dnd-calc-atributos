@@ -12,6 +12,14 @@ const divSubrace = document.getElementById('div-subrace')
 const divAlt = document.getElementById('div-alt')
 const selAtt1 = document.getElementById('sel-att-1')
 const selAtt2 = document.getElementById('sel-att-2')
+const inpAttributes = [
+    document.getElementById('inp-str'),
+    document.getElementById('inp-dex'),
+    document.getElementById('inp-con'),
+    document.getElementById('inp-int'),
+    document.getElementById('inp-wis'),
+    document.getElementById('inp-car')
+]
 
 //VAR
 const pointsTotal = 27
@@ -132,6 +140,20 @@ function updateAttribute(){
         inpWis.value,
         inpCar.value
     ]
+
+    //Valida a entrada
+    pointsLeft = 27
+    for(let i = 0; i < 6; i++){
+        if(Number(attributes[i]) > 15) inpAttributes[i].value = 15
+        if(Number(attributes[i]) < 8) inpAttributes[i].value = 8
+        if(pointCost[attributes[i] - 8] > pointsLeft) {
+            inpAttributes[i].value = pointsLeft + 8
+            pointsLeft = 0
+            attributes[i] = pointsLeft + 8
+        }
+        attributes[i] = inpAttributes[i].value
+        pointsLeft = pointsLeft - pointCost[attributes[i] - 8]
+    }
     
     //Calcula os pontos restantes
     pointsLeft = 27
@@ -244,6 +266,14 @@ function updateTotal(){
     }
     for(let i = 0; i < 6; i++){
         document.getElementsByName('td-mod')[i].innerHTML = modifiers[i]
+    }
+
+    updateCost() //atualiza o custo dos pontos
+}
+
+function updateCost(){
+    for(let i = 0; i < 6; i++){
+        document.getElementsByName('td-cost')[i].innerHTML = pointCost[attributes[i] - 8]
     }
 }
 
