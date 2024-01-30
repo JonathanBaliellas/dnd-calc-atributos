@@ -10,6 +10,8 @@ const selRace = document.getElementById('sel-race')
 const selSubrace = document.getElementById('sel-subrace')
 const divSubrace = document.getElementById('div-subrace')
 const divAlt = document.getElementById('div-alt')
+const selAtt1 = document.getElementById('sel-att-1')
+const selAtt2 = document.getElementById('sel-att-2')
 
 //VAR
 const pointsTotal = 27
@@ -65,6 +67,7 @@ const racialBonus = [
 let altRacialBonus = [0,0,0,0,0,0]
 let attributeTotal = [8,8,8,8,8,8]
 let characterRace = 6 //Alternativo zerado = 6
+let halfelf = false
 
 for(let i = 0;i < races.length; i++){
     let opt = document.createElement('option')
@@ -79,19 +82,29 @@ function selectRace(){
     for(let i = 0; i < Number(selRace.value) + 1; i++){
         sumLength += subraces[i].length
         if(subraces[i].length == 0) sumLength++
-    }    
+    }
     characterRace = sumLength - 1
-    divAlt.style.visibility = 'hidden'
 
-    updateSubraces(sumLength)
-    updateRacialBonus()
+    //Oculta a div de atributos alternativos
+    divAlt.classList.add('disabled')
+
+    //Reseta a seleção de atributos
+    selAtt1.value = -1
+    selAtt2.value = -1
+    for(let i = 1; i < 7; i++){
+        selAtt1.options[i].disabled = false
+        selAtt2.options[i].disabled = false
+    }
+
+    updateSubraces(sumLength) //atualiza a lista de sub-raças
+    updateRacialBonus() //atualiza o bônus racial
 }
 
 function updateSubraces(sumLength){
     //Torna a seleção de sub-raça visível/invisível dependendo da raça selecionada
     if(subraces[selRace.value].length > 0 && selRace.value != -1) 
-        divSubrace.style.visibility = 'visible';
-    else divSubrace.style.visibility = 'hidden';
+        divSubrace.classList.remove('disabled')
+    else divSubrace.classList.add('disabled')
     
     //Atualiza as opções das sub-raças
     selSubrace.innerHTML = '<option value="-1">Selecione</option>'
@@ -103,6 +116,7 @@ function updateSubraces(sumLength){
     }
 }
 
+//Atualiza o bônus racial de acordo com a sub-raça selecionada
 function selectSubrace(){
     characterRace = Number(selSubrace.value)
     updateRacialBonus()
@@ -145,7 +159,7 @@ function updateAttribute(){
         inpCar.max = 15
     }
     
-    updateTotal()
+    updateTotal() //atualiza o total
 }
 
 function updateRacialBonus(){
@@ -158,29 +172,40 @@ function updateRacialBonus(){
         return
     } 
     
+    //Mostra o bônus racial na tela
     for(let i = 0; i < 6; i++){
         document.getElementsByName('td-racial')[i].innerHTML = racialBonus[characterRace][i]
     }
     
     //Se for um meio-elfo ou humano alternativo
     if(characterRace == 6 || characterRace == 12){
-        divAlt.style.visibility = 'visible'
-        const selAtt1 = document.getElementById('sel-att-1')
-        const selAtt2 = document.getElementById('sel-att-2')
+        //Mostra as seleções de atributos
+        divAlt.classList.remove('disabled')
         
+        //Mostra o bônus racial alternativo na tela
         for(let i = 0; i < 6; i++){
             document.getElementsByName('td-racial')[i].innerHTML = altRacialBonus[i]
         }
 
+        //Se for um meio-elfo
         if(characterRace == 12) { 
+            //Desabilita a escolha de Carisma, pois já recebe da raça
             selAtt1.childNodes[13].disabled = true
             selAtt2.childNodes[13].disabled = true
             document.getElementsByName('td-racial')[5].innerHTML = 2
+            halfelf = true
+        } else {
+            if(halfelf){
+                //Se um meio-elfo havia sido escolhido anteriormente, habilita a escolha de Carisma, pois estava desabilitada
+                selAtt1.childNodes[13].disabled = false
+                selAtt2.childNodes[13].disabled = false
+                halfelf = false
+            }
         }
     } else {
-        divAlt.style.visibility = 'hidden'
+        divAlt.classList.add('disabled') //Esconde a seleção de atributos
     }
-    updateTotal()
+    updateTotal() //atualiza o total
 }
 
 function selectAttributeBonus(opt,value){
@@ -189,9 +214,12 @@ function selectAttributeBonus(opt,value){
         document.getElementById('sel-att-2')
     ]
 
+    //Habilita a seleção de todos os atributos
     for(let i = 0; i < selAtt[opt].options.length; i++){
         selAtt[opt].options[i].disabled = false
     }
+
+    //Desabilita a seleção do atributo selecionado na outra caixa de seleção
     selAtt[opt].options[Number(value) + 1].disabled = true
     
     //Insere o bônus racial alternativo
@@ -199,7 +227,7 @@ function selectAttributeBonus(opt,value){
     for(let i = 0; i < 2; i++){
         altRacialBonus[selAtt[i].value] = 1
     }
-    updateRacialBonus()
+    updateRacialBonus() //atualiza o bônus racial
 }
 
 function updateTotal(){
@@ -211,7 +239,6 @@ function updateTotal(){
 
     //Calcula o modificador
     let modifiers = []
-    console.log(attributeTotal)
     for(let i = 0; i < 6; i++){
         modifiers[i] = Math.floor(attributeTotal[i]/2 - 5)
     }

@@ -8,47 +8,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="w3-center">
-        <h1>Calculadora de Pontos para D&D 5ª edição</h1>
-        <section id="sec-race" class="w3-section">
-            <div id="div-race">
-                <label for="sel-race">Selecione a raça: </label>
-                <select name="sel-race" id="sel-race" onchange="selectRace()">
+    <main>
+        <h1 class="w3-center">Calculadora de Pontos para D&D 5ª edição</h1>
+        <section id="sec-race" class="w3-section w3-margin w3-padding">
+            <div class="w3-margin" id="div-race">
+                <label for="sel-race">Raça: </label>
+                <select class="w3-select w3-border" name="sel-race" id="sel-race" onchange="selectRace()">
                     <option value="-1">Selecione</option>
                 </select>
 
             </div>
 
-            <div id="div-subrace" style="visibility: hidden;">
-                <label for="sel-subrace">Selecione a sub-raça</label>
-                <select name="sel-subrace" id="sel-subrace" onchange="selectSubrace()">
+            <div class="w3-margin disabled" id="div-subrace">
+                <label for="sel-subrace">Sub-raça:</label>
+                <select class="w3-select w3-border" name="sel-subrace" id="sel-subrace" onchange="selectSubrace()">
                     
                 </select>
 
             </div>
 
-            <div id="div-alt" style="visibility: hidden;">
-                <label for="sel-att-1">Atributo 1</label>
-                <select class="w3-margin" name="sel-att-1" id="sel-att-1" onchange="selectAttributeBonus(1,value)">
-                    <option value="-1">Selecione</option>
-                    <option value="0">Força</option>
-                    <option value="1">Destreza</option>
-                    <option value="2">Constituição</option>
-                    <option value="3">Inteligência</option>
-                    <option value="4">Sabedoria</option>
-                    <option value="5">Carisma</option>
-                </select>
+            <div class="w3-row-padding disabled" id="div-alt">
+                <div class="w3-half">
+                    <label for="sel-att-1">Atributo 1:</label>
+                    <select class="w3-select w3-border" name="sel-att-1" id="sel-att-1" onchange="selectAttributeBonus(1,value)">
+                        <option value="-1">Selecione</option>
+                        <option value="0">Força</option>
+                        <option value="1">Destreza</option>
+                        <option value="2">Constituição</option>
+                        <option value="3">Inteligência</option>
+                        <option value="4">Sabedoria</option>
+                        <option value="5">Carisma</option>
+                    </select>
 
-                <label for="sel-att-2">Atributo 2</label>
-                <select class="w3-margin" name="sel-att-2" id="sel-att-2" onchange="selectAttributeBonus(0,value)">
-                    <option value="-1">Selecione</option>
-                    <option value="0">Força</option>
-                    <option value="1">Destreza</option>
-                    <option value="2">Constituição</option>
-                    <option value="3">Inteligência</option>
-                    <option value="4">Sabedoria</option>
-                    <option value="5">Carisma</option>
-                </select>
+                </div>
+
+                <div class="w3-half">
+                    <label for="sel-att-2">Atributo 2:</label>
+                    <select class="w3-select w3-border" name="sel-att-2" id="sel-att-2" onchange="selectAttributeBonus(0,value)">
+                        <option value="-1">Selecione</option>
+                        <option value="0">Força</option>
+                        <option value="1">Destreza</option>
+                        <option value="2">Constituição</option>
+                        <option value="3">Inteligência</option>
+                        <option value="4">Sabedoria</option>
+                        <option value="5">Carisma</option>
+                    </select>
+
+                </div>
             </div>
         </section>
         <section id="sec-point-buy" class="w3-section w3-centered">
@@ -115,9 +121,9 @@
                 </tbody>
             </table>
         </section>
-        <section class="w3-section">
+        <section class="w3-section w3-center">
             <button class="w3-button w3-indigo" onclick="reset()">Reiniciar</button>
-            <div>Pontos Restantes: <span id="spn-points-left">27</span>/27</div>
+            <div class="w3-margin">Pontos Restantes: <span id="spn-points-left">27</span>/27</div>
 
         </section>
     </main>
