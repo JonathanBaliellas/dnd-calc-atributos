@@ -32,7 +32,7 @@ let attributes = [
     inpWis.value,
     inpCar.value
 ]
-let pointCost = [0,1,2,3,4,5,7,9]
+let pointCosts = [0,1,2,3,4,5,7,9]
 const races = [
     'Anão',
     'Elfo',
@@ -130,35 +130,45 @@ function selectSubrace(){
     updateRacialBonus()
 }
 
-function updateAttribute(){
+function updateAttribute(event){
     //Recebe os valores dos inputs
-    attributes = [
-        inpStr.value,
-        inpDex.value,
-        inpCon.value,
-        inpInt.value,
-        inpWis.value,
-        inpCar.value
-    ]
+    let input = event.target
+    let index = 0
 
     //Valida a entrada
-    pointsLeft = 27
-    for(let i = 0; i < 6; i++){
-        if(Number(attributes[i]) > 15) inpAttributes[i].value = 15
-        if(Number(attributes[i]) < 8) inpAttributes[i].value = 8
-        if(pointCost[attributes[i] - 8] > pointsLeft) {
-            inpAttributes[i].value = pointsLeft + 8
-            pointsLeft = 0
-            attributes[i] = pointsLeft + 8
-        }
-        attributes[i] = inpAttributes[i].value
-        pointsLeft = pointsLeft - pointCost[attributes[i] - 8]
-    }
+    if(parseInt(input.value) > 15) input.value = 15
+    if(parseInt(input.value) < 8) input.value = 8
     
-    //Calcula os pontos restantes
+    //Inicializa a compra de pontos
     pointsLeft = 27
+    let pointCost = pointCosts[input.value - 8]
+    
+    //Verifica todos os atributos e calcula os pontos restantes
     for(let i = 0; i < 6; i++){
-        pointsLeft = pointsLeft - pointCost[attributes[i] - 8]
+        //Identifica o atributo que foi alterado
+        if(attributes[i] != Number(inpAttributes[i].value)) index = i
+
+        //Atualiza os atributos
+        attributes[i] = Number(inpAttributes[i].value)
+
+        //Calcula os pontos restantes
+        pointsLeft -= pointCosts[attributes[i] - 8] || 0
+    }
+
+    //Atualiza o valor do atributo comprado, caso seu custo seja superior aos pontos disponíveis
+    if(pointCost > pointsLeft + pointCost) {
+        //Obtém o maior valor comprável
+        let buyable = 0
+        pointCosts.forEach(cost =>{
+            if(cost <= pointsLeft + pointCost) buyable = cost
+        })
+
+        //Atribui o maior valor comprável ao atributo
+        attributes[index] = Number(pointCosts.indexOf(buyable) + 8)
+        input.value = attributes[index]
+
+        //atualiza os pontos restantes
+        pointsLeft = pointsLeft + pointCost - buyable
     }
 
     //Atualiza o HTML com os pontos restantes
@@ -272,16 +282,17 @@ function updateTotal(){
 
 function updateCost(){
     for(let i = 0; i < 6; i++){
-        document.getElementsByName('td-cost')[i].innerHTML = pointCost[attributes[i] - 8]
+        document.getElementsByName('td-cost')[i].innerHTML = pointCosts[attributes[i] - 8]
     }
 }
 
 function reset(){
-    inpStr.value = 8
-    inpDex.value = 8
-    inpCon.value = 8
-    inpInt.value = 8
-    inpWis.value = 8
-    inpCar.value = 8
-    updateAttribute()
+    //Reseta os valores
+    inpAttributes.forEach((att,i) =>{
+        att.value = 8
+        attributes[i] = 8
+    })
+    pointsLeft = 27
+    spnPointsLeft.innerHTML = pointsLeft
+    updateTotal()
 }
