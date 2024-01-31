@@ -307,13 +307,9 @@ function selectAttributeBonus(opt,value){
 function selectClass(){
     const selClass = document.getElementById('sel-class')
     const liClassHint = document.getElementById('li-class-hint')
-    const liClassHint2 = document.getElementById('li-class-hint2')
     const divClassHint = document.getElementById('div-class-hint')
-    const divClassHint2 = document.getElementById('div-class-hint2')
     liClassHint.innerHTML = classHint[selClass.value]
-    liClassHint2.innerHTML = classHint[selClass.value]
     divClassHint.classList.remove('disabled')
-    divClassHint2.classList.remove('disabled')
 }
 
 function updateTotal(){
