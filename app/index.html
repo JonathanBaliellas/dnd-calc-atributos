@@ -6,11 +6,15 @@
     <title>D&D 5e - Calculadora de Pontos</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/712627e99f.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <main>
         <h1 class="w3-center">Calculadora de Pontos para D&D 5ª edição</h1>
+
+        <!-- Seleção de Raça -->
         <section id="sec-race" class="w3-section w3-margin w3-padding menu">
+            <!-- Raça -->
             <div class="w3-margin" id="div-race">
                 <label for="sel-race">Raça</label>
                 <select class="w3-select w3-border w3-round-large" name="sel-race" id="sel-race" onchange="selectRace()">
@@ -19,6 +23,7 @@
 
             </div>
 
+            <!-- Sub-raça -->
             <div class="w3-margin disabled" id="div-subrace">
                 <label for="sel-subrace">Sub-raça</label>
                 <select class="w3-select w3-border w3-round-large" name="sel-subrace" id="sel-subrace" onchange="selectSubrace()">
@@ -27,6 +32,7 @@
 
             </div>
 
+            <!-- Atributos variáveis -->
             <div class="w3-row-padding disabled" id="div-alt">
                 <div class="w3-half">
                     <label for="sel-att-1">Atributo 1</label>
@@ -57,10 +63,45 @@
                 </div>
             </div>
 
+            <!-- Descrição da raça -->
             <div class="w3-margin" id="div-description">
                 <ul class="w3-ul w3-card w3-light-grey" id="ul-description"></ul>
             </div>
         </section>
+
+        <!-- Seleção de Classe -->
+        <section class="w3-container w3-margin w3-padding menu" style="margin-top: -40px!important;">
+            <div class="w3-margin">
+                <label for="sel-class">Classe</label>
+                <select class="w3-select w3-border w3-round-large" name="sel-class" id="sel-class" onchange="selectClass()">
+                    <option value="-1" disabled selected>Selecione</option>
+                    <option value="0">Bárbaro</option>
+                    <option value="1">Bardo</option>
+                    <option value="2">Bruxo</option>
+                    <option value="3">Clérigo</option>
+                    <option value="4">Druida</option>
+                    <option value="5">Feiticeiro</option>
+                    <option value="6">Guardião</option>
+                    <option value="7">Guerreiro</option>
+                    <option value="8">Ladino</option>
+                    <option value="9">Mago</option>
+                    <option value="10">Monge</option>
+                    <option value="11">Paladino</option>
+                </select>
+            </div>
+
+            <!-- Dicas de classe -->
+            <div class="w3-container disabled" id="div-class-hint">
+                <div class="w3-padding w3-card w3-light-grey w3-container" id="ul-class-hint">
+                    <div class="info box">
+                        <i class="fa-solid fa-circle-info w3-text-indigo w3-xlarge"></i> 
+                    </div>
+                    <div class="hint-text box" id="li-class-hint" style="margin-left: 10px;"></div></li>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compra de Pontos -->
         <section id="sec-point-buy" class="w3-section w3-centered table-container">
             <table class="w3-table-all">
                 <thead>
@@ -75,7 +116,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Força</td>
+                        <td onclick="document.getElementById('modal-str').style.display='block'">Força</td>
                         <td><input type="number" id="inp-str" min="8" max="15" value="8" onchange="updateAttribute(event)" onfocus="this.select()" class="w3-input w3-center w3-border w3-round"></td>
                         <td name="td-racial">0</td>
                         <td name="td-total">8</td>
@@ -83,7 +124,7 @@
                         <td name="td-cost">0</td>
                     </tr>
                     <tr>
-                        <td>Destreza</td>
+                        <td onclick="document.getElementById('modal-dex').style.display='block'">Destreza</td>
                         <td><input type="number" id="inp-dex" min="8" max="15" value="8" onchange="updateAttribute(event)" onfocus="this.select()" class="w3-input w3-center w3-border w3-round"></td>
                         <td name="td-racial">0</td>
                         <td name="td-total">8</td>
@@ -91,7 +132,7 @@
                         <td name="td-cost">0</td>
                     </tr>
                     <tr>
-                        <td>Constituição</td>
+                        <td onclick="document.getElementById('modal-con').style.display='block'">Constituição</td>
                         <td><input type="number" id="inp-con" min="8" max="15" value="8" onchange="updateAttribute(event)" onfocus="this.select()" class="w3-input w3-center w3-border w3-round"></td>
                         <td name="td-racial">0</td>
                         <td name="td-total">8</td>
@@ -99,7 +140,7 @@
                         <td name="td-cost">0</td>
                     </tr>
                     <tr>
-                        <td>Inteligência</td>
+                        <td onclick="document.getElementById('modal-int').style.display='block'">Inteligência</td>
                         <td><input type="number" id="inp-int" min="8" max="15" value="8" onchange="updateAttribute(event)" onfocus="this.select()" class="w3-input w3-center w3-border w3-round"></td>
                         <td name="td-racial">0</td>
                         <td name="td-total">8</td>
@@ -107,7 +148,7 @@
                         <td name="td-cost">0</td>
                     </tr>
                     <tr>
-                        <td>Sabedoria</td>
+                        <td onclick="document.getElementById('modal-wis').style.display='block'">Sabedoria</td>
                         <td><input type="number" id="inp-wis" min="8" max="15" value="8" onchange="updateAttribute(event)" onfocus="this.select()" class="w3-input w3-center w3-border w3-round"></td>
                         <td name="td-racial">0</td>
                         <td name="td-total">8</td>
@@ -115,7 +156,7 @@
                         <td name="td-cost">0</td>
                     </tr>
                     <tr>
-                        <td>Carisma</td>
+                        <td onclick="document.getElementById('modal-cha').style.display='block'">Carisma</td>
                         <td><input type="number" id="inp-car" min="8" max="15" value="8" onchange="updateAttribute(event)" onfocus="this.select()" class="w3-input w3-center w3-border w3-round"></td>
                         <td name="td-racial">0</td>
                         <td name="td-total">8</td>
@@ -125,15 +166,241 @@
                 </tbody>
             </table>
         </section>
+
+        <!-- Controle -->
         <section class="w3-section w3-center">
             <div class="w3-margin">Pontos Restantes: <span id="spn-points-left">27</span>/27</div>
             <button class="w3-button w3-indigo w3-round-large" onclick="reset()">Reiniciar</button>
-
         </section>
+
+        <!-- Dicas de Classe -->
+        <section class="w3-section w3-center">
+            <p id="class-hint"></p>
+        </section>
+
+        <!-- Modal -->
+        <div id="modal-help" class="w3-modal">
+            <div class="w3-modal-content w3-animate-bottom">
+          
+              <header class="w3-container w3-indigo">
+                <span onclick="document.getElementById('modal-help').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Ajuda</h2>
+              </header>
+          
+              <div class="w3-container">
+                <p>O valor máximo que pode ser inserido é 15 e o mínimo é 8.</p>
+                <p>Selecione a raça e sub-raça (se houver) para aplicar os bônus raciais.</p>
+                <p>Toque no atributo para obter mais informações a respeito dele.</p>
+              </div>
+          
+              <footer class="w3-container w3-indigo">
+                <p>Modal Footer</p>
+              </footer>
+          
+            </div>
+        </div>
+
+        <!-- Modais dos atributos -->
+        <!-- Força -->
+        <div id="modal-str" class="w3-modal">
+            <div class="w3-modal-content w3-animate-bottom">
+          
+              <header class="w3-container w3-indigo">
+                <span onclick="document.getElementById('modal-str').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Força</h2>
+              </header>
+          
+              <div class="w3-container">
+                <p>
+                    Força mede o poder corporal, treinamento atlético e o quanto você pode exercer de força física bruta.
+                </p>
+                <h3>Jogadas de Ataque e Dano</h3>
+                <p>
+                    Você adiciona o seu modificador de Força às suas jogadas de ataque e dano com armas de combate corpo a corpo, como maças, machados de batalha ou azagaias.
+                </p>
+                <h3>Levantar e Carregar</h3>
+                <p>Seu valor de Força determina a quantidade de peso que você suporta.</p>
+                <h3>Testes de Força</h3>
+                <p>
+                    Um teste de Força pode representar qualquer tentativa de levantar, empurrar, puxar ou quebrar alguma coisa, forçar seu corpo através de um espaço ou, de um modo geral, aplicar força bruta em uma situação.
+                </p>
+                <h3>Perícias</h3>
+                <ul>
+                    <li>Atletismo</li>
+                </ul>
+              </div>          
+            </div>
+        </div>
+
+        <!-- Destreza -->
+        <div id="modal-dex" class="w3-modal">
+            <div class="w3-modal-content w3-animate-bottom">
+          
+              <header class="w3-container w3-indigo">
+                <span onclick="document.getElementById('modal-dex').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Destreza</h2>
+              </header>
+          
+              <div class="w3-container">
+                <p>
+                    Destreza mede agilidade, reflexos e equilíbrio.
+                </p>
+                <h3>Jogadas de Ataque e Dano</h3>
+                <p>
+                    Você adiciona o seu modificador de Destreza às suas jogadas de ataque e dano com armas de ataque à distância, como fundas ou arcos. Você também pode adicionar o modificador de Destreza às suas jogadas de ataque e dano ao atacar com uma arma de combate corpo a corpo que tenha a propriedade acuidade, como uma adaga ou uma rapieira.
+                </p>
+                <h3>Classe de Armadura</h3>
+                <p>
+                    Dependendo da armadura que estiver usando, você pode adicionar todo o seu modificador de Destreza, ou parte dele, à sua Classe de Armadura.
+                </p>
+                <h3>Iniciativa</h3>
+                <p>
+                    No início de cada combate, você joga a iniciativa, fazendo um teste de Destreza. A iniciativa determina a ordem dos turnos em combate.
+                </p>
+                <h3>Testes de Destreza</h3>
+                <p>
+                    Um teste de Destreza pode descrever qualquer tentativa de movimentação ágil, rápida e silenciosa, além de tentativas de manutenção do equilíbrio.
+                </p>
+                <h3>Perícias</h3>
+                <ul>
+                    <li>Acrobacia</li>
+                    <li>Prestidigitação</li>
+                    <li>Furtividade</li>
+                </ul>
+              </div>          
+            </div>
+        </div>
+
+        <!-- Constituição -->
+        <div id="modal-con" class="w3-modal">
+            <div class="w3-modal-content w3-animate-bottom">
+          
+              <header class="w3-container w3-indigo">
+                <span onclick="document.getElementById('modal-con').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Constituição</h2>
+              </header>
+          
+              <div class="w3-container">
+                <p>
+                    Constituição mede saúde, resistência e força vital.
+                </p>
+                <h3>Pontos de Vida</h3>
+                <p>
+                    Seu modificador de Constituição contribui para seus pontos de vida. Normalmente, você adiciona seu modificador de Constituição a cada Dado de Vida jogado para definir seus pontos de vida.
+                </p>
+              </div>          
+            </div>
+        </div>
+
+        <!-- Inteligência -->
+        <div id="modal-int" class="w3-modal">
+            <div class="w3-modal-content w3-animate-bottom">
+          
+              <header class="w3-container w3-indigo">
+                <span onclick="document.getElementById('modal-int').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Inteligência</h2>
+              </header>
+          
+              <div class="w3-container">
+                <p>
+                    Inteligência mede acuidade mental, exatidão da memória e capacidade de raciocínio.
+                </p>
+                <h3>Atributo de Conjuração</h3>
+                <p>
+                    Magos usam Inteligência como atributo de conjuração, o que ajuda a determinar as CD das salvaguardas para evitar suas magias.
+                </p>
+                <h3>Testes de Inteligência</h3>
+                <p>
+                    Um teste de Inteligência entra em jogo quando você precisa usar lógica, instrução, memória ou raciocínio dedutivo.
+                </p>
+                <h3>Perícias</h3>
+                <ul>
+                    <li>Arcanismo</li>
+                    <li>História</li>
+                    <li>Investigação</li>
+                    <li>Natureza</li>
+                    <li>Religião</li>
+                </ul>
+              </div>          
+            </div>
+        </div>
+
+        <!-- Sabedoria -->
+        <div id="modal-wis" class="w3-modal">
+            <div class="w3-modal-content w3-animate-bottom">
+          
+              <header class="w3-container w3-indigo">
+                <span onclick="document.getElementById('modal-wis').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Sabedoria</h2>
+              </header>
+          
+              <div class="w3-container">
+                <p>
+                    Sabedoria reflete quão sintonizado você está com o mundo ao seu redor, representando perspicácia e intuição.
+                </p>
+                <h3>Atributo de Conjuração</h3>
+                <p>
+                    Clérigos, druidas e guardiões usam Sabedoria como atributo de conjuração, o que ajuda a determinar as CD das salvaguardas para evitar suas magias.
+                </p>
+                <h3>Testes de Sabedoria</h3>
+                <p>
+                    Um teste de Sabedoria pode refletir um esforço para ler linguagem corporal, compreender sentimentos alheios, perceber algo sobre o meio ambiente, ou cuidar de uma pessoa ferida.
+                </p>
+                <h3>Perícias</h3>
+                <ul>
+                    <li>Lidar com Animais</li>
+                    <li>Intuição</li>
+                    <li>Medicina</li>
+                    <li>Percepção</li>
+                    <li>Sobrevivência</li>
+                </ul>
+              </div>          
+            </div>
+        </div>
+
+        <!-- Carisma -->
+        <div id="modal-cha" class="w3-modal">
+            <div class="w3-modal-content w3-animate-bottom">
+          
+              <header class="w3-container w3-indigo">
+                <span onclick="document.getElementById('modal-cha').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Carisma</h2>
+              </header>
+          
+              <div class="w3-container">
+                <p>
+                    Carisma mede a capacidade de interagir socialmente de forma eficaz. Isso inclui fatores como confiança e eloquência, podendo representar uma personalidade encantadora ou autoritária.
+                </p>
+                <h3>Atributo de Conjuração</h3>
+                <p>
+                    Bardos, paladinos, feiticeiros e bruxos usam o Carisma como seu atributo de conjuração, o que ajuda a determinar as CD das salvaguardas feitas contra as suas magias.
+                </p>
+                <h3>Testes de Carisma</h3>
+                <p>
+                    Um teste de Carisma pode ser necessário quando você tenta influenciar, impressionar ou entreter, contar uma mentira convincente, ou quando estiver no meio de uma interação social complicada.
+                </p>
+                <h3>Perícias</h3>
+                <ul>
+                    <li>Enganação</li>
+                    <li>Intimidação</li>
+                    <li>Atuação</li>
+                    <li>Persuasão</li>
+                </ul>
+              </div>          
+            </div>
+        </div>
     </main>
     <footer>
         <section class="w3-container w3-indigo w3-center sec-footer">
-            <p>Jontz - 2024 - Versão 1.1</p>
+            <p>Jontz - 2024 - Versão 1.2</p>
+            <button class="w3-button w3-indigo w3-round-large" onclick="document.getElementById('modal-help').style.display='block'">Ajuda</button>
         </section>
     </footer>
     <script src="script.js"></script>

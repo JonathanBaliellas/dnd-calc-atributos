@@ -73,6 +73,20 @@ const description = [
     ['O meio-orc recebe +2 de Força e +1 de Constituição'],
     ['O tiferino recebe +1 de Inteligência e +2 de Carisma'],
 ]
+const classHint = [
+    'Pegue seus dois valores de atributo mais altos e coloque o maior em Força e o outro em Constituição.',
+    'Seu carisma deve ter o maior valor possível, seguido de Destreza.',
+    'Carisma deve ser seu atributo de maior valor, seguido de Constituição.',
+    'Sabedoria deve receber o seu maior valor de atributo, seguida de Força ou Constituição.',
+    'Sabedoria deve receber o seu maior valor de atributo, seguido por Constituição.',
+    'Carisma deve ser seu atributo de maior valor, seguido por Constituição.',
+    'Torne seu maior valor de atributo a Destreza, depois a Sabedoria. Alguns guardiões focados em combate com duas armas preferem que Força seja maior que Destreza.',
+    'Se quiser se especializar em armas de combate corpo a corpo, coloque seu valor de atributo mais alto em Força, ou, se preferir ser um arqueiro (ou lutar com armas de acuidade), em Destreza. Seu segundo valor mais alto deve ser atribuiído a Constituição ou Inteligência, caso pretenda adotar o arquétipo marcial do Cavaleiro Místico.',
+    'Destreza deve receber o seu maior valor de atributo. Faça da Inteligência o seu próximo atributo mais alto, se quiser se destacar na Investigação, ou se planeja assumir o arquétipo Trapaceiro Arcano. Escolha Carisma, se planeja enfatizar o logro e a interação social.',
+    'Inteligência deve ser seu atributo de maior valor, seguido por Constituição ou Destreza. Se você planeja se juntar à Escola do Encantamento, faça com que Carisma seja seu próximo atributo de maior valor.',
+    'Destreza deve receber o seu maior valor de atributo, seguida por Sabedoria.',
+    'Força deve ser seu atributo principal, seguido por Carisma.'
+]
 const racialBonus = [
     [0,0,2,0,1,0], //Anão da Colina
     [2,0,2,0,0,0], //Anão da Montanha
@@ -288,6 +302,14 @@ function selectAttributeBonus(opt,value){
         altRacialBonus[selAtt[i].value] = 1
     }
     updateRacialBonus() //atualiza o bônus racial
+}
+
+function selectClass(){
+    const selClass = document.getElementById('sel-class')
+    const liClassHint = document.getElementById('li-class-hint')
+    const divClassHint = document.getElementById('div-class-hint')
+    liClassHint.innerHTML = classHint[selClass.value]
+    divClassHint.classList.remove('disabled')
 }
 
 function updateTotal(){

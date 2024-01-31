@@ -9,10 +9,10 @@ td, th{
     vertical-align: middle!important;
 }
 main{
-    min-height: 90vh;
+    min-height: 86.9vh;
 }
 .sec-footer{
-    height: 8.9vh;
+    height: 12vh;
 }
 .table-container{
     overflow-x: auto;
@@ -25,11 +25,34 @@ main{
     margin-left: auto!important;
     margin-right: auto!important;
 }
+.info{
+    width: 5%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.hint-text{
+    width: 92%;
+}
+.box{
+    display: inline-block;
+    vertical-align: middle;
+}
 @media only screen and (max-width: 600px){
     table{
         width: auto;
     }
     .menu{
         width: auto;
+    }
+    .info{
+        width: 7%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .hint-text{
+        width: 87%;
+    }
+    .sec-footer{
+        height: 15vh;
     }
 }
