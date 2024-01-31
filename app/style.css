@@ -8,11 +8,10 @@ table{
 td, th{
     vertical-align: middle!important;
 }
-main{
-    min-height: 86.9vh;
-}
 .sec-footer{
-    height: 12vh;
+    height: 8rem;
+    padding-top: 1rem;
+    margin-top: 4rem;
 }
 .table-container{
     overflow-x: auto;
@@ -37,6 +36,11 @@ main{
     display: inline-block;
     vertical-align: middle;
 }
+.table-small{
+    max-width: 100%;
+    margin-left: auto!important;
+    margin-right: auto!important;
+}
 @media only screen and (max-width: 600px){
     table{
         width: auto;
@@ -51,8 +55,5 @@ main{
     }
     .hint-text{
         width: 87%;
-    }
-    .sec-footer{
-        height: 15vh;
     }
 }

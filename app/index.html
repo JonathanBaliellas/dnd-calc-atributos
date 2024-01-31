@@ -10,7 +10,10 @@
 </head>
 <body>
     <main>
-        <h1 class="w3-center">Calculadora de Pontos para D&D 5ª edição</h1>
+        <div class="w3-container w3-indigo w3-padding-32">
+            <h1 class="w3-center">Calculadora de Pontos para D&D 5ª edição</h1>
+
+        </div>
 
         <!-- Seleção de Raça -->
         <section id="sec-race" class="w3-section w3-margin w3-padding menu">
@@ -192,10 +195,30 @@
                 <p>O valor máximo que pode ser inserido é 15 e o mínimo é 8.</p>
                 <p>Selecione a raça e sub-raça (se houver) para aplicar os bônus raciais.</p>
                 <p>Toque no atributo para obter mais informações a respeito dele.</p>
+                <div class="w3-container">
+                    <h3>Custo de Pontos de Atributo</h3>
+                    <table class="w3-table-all w3-margin w3-centered table-small">
+                        <thead>
+                            <tr class="w3-indigo">
+                                <th>Valor</th>
+                                <th>Custo</th>
+                                <th>Valor</th>
+                                <th>Custo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>8</td><td>0</td><td>12</td><td>4</td></tr>
+                            <tr><td>9</td><td>1</td><td>13</td><td>5</td></tr>
+                            <tr><td>10</td><td>2</td><td>14</td><td>7</td></tr>
+                            <tr><td>11</td><td>3</td><td>15</td><td>9</td></tr>
+                        </tbody>
+                    </table>
+
+                </div>
               </div>
           
               <footer class="w3-container w3-indigo">
-                <p>Modal Footer</p>
+                <p>Desenvolvido por Jonathan Baliellas (2024)</p>
               </footer>
           
             </div>
@@ -399,7 +422,7 @@
     </main>
     <footer>
         <section class="w3-container w3-indigo w3-center sec-footer">
-            <p>Jontz - 2024 - Versão 1.2.1</p>
+            <p>Jontz - 2024 - Versão 1.2.2</p>
             <button class="w3-button w3-indigo w3-round-large" onclick="document.getElementById('modal-help').style.display='block'">Ajuda</button>
         </section>
     </footer>
