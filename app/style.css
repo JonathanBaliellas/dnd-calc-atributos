@@ -9,7 +9,7 @@ td, th{
     vertical-align: middle!important;
 }
 main{
-    height: 90vh;
+    min-height: 90vh;
 }
 .sec-footer{
     height: 8.9vh;

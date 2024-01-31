@@ -12,16 +12,16 @@
         <h1 class="w3-center">Calculadora de Pontos para D&D 5ª edição</h1>
         <section id="sec-race" class="w3-section w3-margin w3-padding menu">
             <div class="w3-margin" id="div-race">
-                <label for="sel-race">Raça: </label>
-                <select class="w3-select w3-border" name="sel-race" id="sel-race" onchange="selectRace()">
-                    <option value="-1">Selecione</option>
+                <label for="sel-race">Raça</label>
+                <select class="w3-select w3-border w3-round-large" name="sel-race" id="sel-race" onchange="selectRace()">
+                    <option class="w3-light-grey" value="-1" disabled selected>Selecione</option>
                 </select>
 
             </div>
 
             <div class="w3-margin disabled" id="div-subrace">
-                <label for="sel-subrace">Sub-raça:</label>
-                <select class="w3-select w3-border" name="sel-subrace" id="sel-subrace" onchange="selectSubrace()">
+                <label for="sel-subrace">Sub-raça</label>
+                <select class="w3-select w3-border w3-round-large" name="sel-subrace" id="sel-subrace" onchange="selectSubrace()">
                     
                 </select>
 
@@ -29,9 +29,9 @@
 
             <div class="w3-row-padding disabled" id="div-alt">
                 <div class="w3-half">
-                    <label for="sel-att-1">Atributo 1:</label>
-                    <select class="w3-select w3-border" name="sel-att-1" id="sel-att-1" onchange="selectAttributeBonus(1,value)">
-                        <option value="-1">Selecione</option>
+                    <label for="sel-att-1">Atributo 1</label>
+                    <select class="w3-select w3-border w3-round-large" name="sel-att-1" id="sel-att-1" onchange="selectAttributeBonus(1,value)">
+                        <option value="-1" disabled>Selecione</option>
                         <option value="0">Força</option>
                         <option value="1">Destreza</option>
                         <option value="2">Constituição</option>
@@ -43,9 +43,9 @@
                 </div>
 
                 <div class="w3-half">
-                    <label for="sel-att-2">Atributo 2:</label>
-                    <select class="w3-select w3-border" name="sel-att-2" id="sel-att-2" onchange="selectAttributeBonus(0,value)">
-                        <option value="-1">Selecione</option>
+                    <label for="sel-att-2">Atributo 2</label>
+                    <select class="w3-select w3-border w3-round-large" name="sel-att-2" id="sel-att-2" onchange="selectAttributeBonus(0,value)">
+                        <option value="-1" disabled>Selecione</option>
                         <option value="0">Força</option>
                         <option value="1">Destreza</option>
                         <option value="2">Constituição</option>
@@ -55,6 +55,10 @@
                     </select>
 
                 </div>
+            </div>
+
+            <div class="w3-margin" id="div-description">
+                <ul class="w3-ul w3-card w3-light-grey" id="ul-description"></ul>
             </div>
         </section>
         <section id="sec-point-buy" class="w3-section w3-centered table-container">
@@ -122,14 +126,14 @@
             </table>
         </section>
         <section class="w3-section w3-center">
-            <button class="w3-button w3-indigo" onclick="reset()">Reiniciar</button>
             <div class="w3-margin">Pontos Restantes: <span id="spn-points-left">27</span>/27</div>
+            <button class="w3-button w3-indigo w3-round-large" onclick="reset()">Reiniciar</button>
 
         </section>
     </main>
     <footer>
         <section class="w3-container w3-indigo w3-center sec-footer">
-            <p>Jontz - 2024 - Versão 1.0</p>
+            <p>Jontz - 2024 - Versão 1.1</p>
         </section>
     </footer>
     <script src="script.js"></script>

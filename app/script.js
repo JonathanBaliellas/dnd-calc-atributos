@@ -9,6 +9,7 @@ const spnPointsLeft = document.getElementById('spn-points-left')
 const selRace = document.getElementById('sel-race')
 const selSubrace = document.getElementById('sel-subrace')
 const divSubrace = document.getElementById('div-subrace')
+const ulDescription = document.getElementById('ul-description')
 const divAlt = document.getElementById('div-alt')
 const selAtt1 = document.getElementById('sel-att-1')
 const selAtt2 = document.getElementById('sel-att-2')
@@ -54,6 +55,23 @@ const subraces = [
     [],
     [],
     [],
+]
+const description = [
+    ['O anão da colina recebe +2 de Constituição e +1 de Sabedoria',
+    'O anão da montanha recebe +2 de Constituição e +2 de Força'],
+    ['O alto elfo recebe +2 de Destreza e +1 de Inteligência',
+    'O elfo silvestre recebe +2 de Destreza e +1 de Sabedoria',
+    'O elfo obscuro (drow) recebe +2 de Destreza e +1 de Carisma'],
+    ['O humano padrão recebe +1 em todos os atributos',
+    'O humano alternativo recebe +1 em dois atributos à sua escolha'],
+    ['O pequenino pés-ligeiros recebe +2 de Destreza e +1 de Carisma',
+    'O pequenino robusto recebe +2 de Destreza e +1 de Constituição'],
+    ['O draconato recebe +2 de Força e +1 de Carisma'],
+    ['O gnomo dos bosques recebe +2 de Inteligência e +1 de Destreza',
+    'O gnomo das rochas recebe +2 de Inteligência e +1 de Constituição'],
+    ['O meio-elfo recebe +2 de Carisma e +1 em dois atributos à sua escolha'],
+    ['O meio-orc recebe +2 de Força e +1 de Constituição'],
+    ['O tiferino recebe +1 de Inteligência e +2 de Carisma'],
 ]
 const racialBonus = [
     [0,0,2,0,1,0], //Anão da Colina
@@ -104,8 +122,19 @@ function selectRace(){
         selAtt2.options[i].disabled = false
     }
 
+    //Atualiza a descrição
+    ulDescription.innerHTML = ''
+    const subracesLength = subraces[selRace.value].length === 0 ? 1 : subraces[selRace.value].length
+    for(let i = 0; i < subracesLength; i++){
+        const li = document.createElement('li')
+        li.innerHTML = description[selRace.value][i]
+        ulDescription.appendChild(li)
+    }
+
     updateSubraces(sumLength) //atualiza a lista de sub-raças
     updateRacialBonus() //atualiza o bônus racial
+    resetTotal()
+    // updateTotal() //atualiza o total
 }
 
 function updateSubraces(sumLength){
@@ -115,9 +144,9 @@ function updateSubraces(sumLength){
     else divSubrace.classList.add('disabled')
     
     //Atualiza as opções das sub-raças
-    selSubrace.innerHTML = '<option value="-1">Selecione</option>'
+    selSubrace.innerHTML = '<option class="w3-light-grey" value="-1" disabled selected>Selecione</option>'
     for(let i = 0; i < subraces[selRace.value].length; i++){
-        let opt = document.createElement('option')
+        const opt = document.createElement('option')
         opt.innerHTML = subraces[selRace.value][i]
         opt.value = sumLength + (i - subraces[selRace.value].length)
         selSubrace.appendChild(opt)
@@ -246,7 +275,7 @@ function selectAttributeBonus(opt,value){
     ]
 
     //Habilita a seleção de todos os atributos
-    for(let i = 0; i < selAtt[opt].options.length; i++){
+    for(let i = 1; i < selAtt[opt].options.length; i++){
         selAtt[opt].options[i].disabled = false
     }
 
@@ -295,4 +324,10 @@ function reset(){
     pointsLeft = 27
     spnPointsLeft.innerHTML = pointsLeft
     updateTotal()
+}
+
+function resetTotal(){
+    for(let i = 0; i < 6; i++){
+        document.getElementsByName('td-total')[i].innerHTML = 8
+    }
 }
