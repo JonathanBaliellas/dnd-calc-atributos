@@ -145,6 +145,9 @@ function selectRace(){
         ulDescription.appendChild(li)
     }
 
+    //Restaura os atributos alternativos
+    altRacialBonus = [0,0,0,0,0,0]
+
     updateSubraces(sumLength) //atualiza a lista de sub-raças
     updateRacialBonus() //atualiza o bônus racial
     resetTotal()
